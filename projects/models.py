@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.models import User
+from django.contrib.auth.models import User
 
 
 class Projects(models.Model):
@@ -20,7 +20,7 @@ class Projects(models.Model):
         ('purple', 'Purple'),
     ]
     # creation fields
-    owner = models.ForiegnKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
     # user edited fields
     title = models.CharField(max_length=50)
@@ -30,12 +30,12 @@ class Projects(models.Model):
     deadline = models.DateTimeField(null=True)
     status = models.CharField(
         max_length=11,
-        default=null,
+        default='todo',
         choices=status_choices
     )
     color = models.CharField(
             max_length=6,
-            default=null,
+            default='red',
             choices=project_color_choices
                             )
     
