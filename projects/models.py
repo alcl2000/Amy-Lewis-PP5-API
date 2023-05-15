@@ -39,3 +39,8 @@ class Projects(models.Model):
             choices=project_color_choices
                             )
     
+    class Meta:
+        ordering = ['-created_at']
+    
+    def string(self):
+        return f'${self.id}. ${self.title}'
