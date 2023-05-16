@@ -15,6 +15,7 @@ class Tasks(models.Model):
                              blank=True,
                              null=True
                              )
+    title = models.CharField(max_length=250)
     project = models.ForeignKey(Projects, 
                                 on_delete=models.CASCADE,
                                 related_name='tasks',
@@ -29,3 +30,10 @@ class Tasks(models.Model):
                                 choices=progress_options
                                 )
     # assets = models.FileField()
+
+    class Meta:
+        ordering = ['-created_on']
+
+    def __str__(self):
+        return f'${self.id}. ${self.title}'
+        
