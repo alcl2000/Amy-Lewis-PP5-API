@@ -10,12 +10,13 @@ class TaskList(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Tasks.objects.all().orderby('-created_on')
-    # filterset_backends = [ 
-    #     filters.SearchFilter,
-    #     DjangoFilterBackend
-    # ]
-    # filterset_fields = [
+    filterset_backends = [ 
+        filters.SearchFilter,
+        DjangoFilterBackend
+    ]
+    filterset_fields = [
         
-    # ]
+    ]
+    
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
