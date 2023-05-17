@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 
 class TaskSerializer(serializers.ModelField):
-    user = serializers.ReadOnlyField(source=owner.username)
+    user = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
 
     def get_owner_id(self, obj):
