@@ -8,7 +8,7 @@ class TaskListViewTest(APITestCase):
     def setUp(self):
         User.objects.create_user(username='adam', password='123')
     
-    def test_user_can_create_tasks(self):
+    def test_user_can_retrieve_tasks(self):
         adam = User.objects.get(username='adam')
         Tasks.objects.create(title='task 1', important=False)
         response = self.client.get('/tasks/')
