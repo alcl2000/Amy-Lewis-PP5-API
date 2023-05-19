@@ -4,16 +4,18 @@ from projects.models import Projects
 
 
 # Create your models here.
-class Tasks(models.Model):
+class Tasks(models.Model): 
+    # set user to a blank array method - stops user from returning null
+    def set_no_owner(self):
+        return get_user_model().objects.get_or_create(username='')[0]
     progress_options = [
         ('not_started', 'Not Started'),
         ('in_progress', 'In Progress'), 
         ('complete', 'Complete')
     ]
     user = models.ForeignKey(User, 
-                             on_delete=models.SET_NULL, 
+                             on_delete=models.SET(set_no_owner), 
                              blank=True,
-                             null=True
                              )
     title = models.CharField(max_length=250)
     project = models.ForeignKey(Projects, 
