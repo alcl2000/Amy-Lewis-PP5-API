@@ -40,7 +40,7 @@ class Projects(models.Model):
                             )
     
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['-created_on']
     
     def string(self):
         return f'${self.id}. ${self.title}'
