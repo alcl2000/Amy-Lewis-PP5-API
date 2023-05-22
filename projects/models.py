@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import ArrayField
 
 
 class Projects(models.Model):
@@ -24,9 +25,10 @@ class Projects(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     # user edited fields
     title = models.CharField(max_length=50)
-    goal_1 = models.CharField(max_length=250)
-    goal_2 = models.CharField(max_length=250)
-    goal_3 = models.CharField(max_length=250)
+    goals = ArrayField(
+        models.CharField(max_length=250, blank=True),
+        size=3
+    )
     deadline = models.DateTimeField(null=True)
     status = models.CharField(
         max_length=11,
@@ -37,7 +39,7 @@ class Projects(models.Model):
             max_length=6,
             default='red',
             choices=project_color_choices
-                            )
+                            )    
     
     class Meta:
         ordering = ['-created_on']
