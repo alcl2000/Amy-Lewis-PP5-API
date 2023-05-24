@@ -9,4 +9,10 @@ class Profile(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=250, blank=True)
     bio = models.TextField(blank=True)
+    # profile picture = photofield 
 
+    class Meta:
+        ordering = ['-created_on']
+    
+    def __str__(self):
+        return f"${self.name}'s profile"
