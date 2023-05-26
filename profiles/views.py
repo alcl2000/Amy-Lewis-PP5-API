@@ -27,3 +27,11 @@ class ProfileList(generics.ListAPIView):
         # 'projects',
         # 'tasks'
     ]
+
+
+class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Detail/edit/delete view
+    """
+    permission_classes = [IsOwnerOrReadOnly]
+    serializer_class = ProfileSerializer
