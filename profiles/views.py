@@ -33,5 +33,8 @@ class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     Detail/edit/delete view
     """
+    queryset = Profile.objects.annotate(
+        project_count=Count('owner__projects', distinct=True)
+    ).order_by('created_on')
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ProfileSerializer
