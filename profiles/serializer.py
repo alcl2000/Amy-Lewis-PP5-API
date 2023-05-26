@@ -17,6 +17,9 @@ class ProfileSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.owner
 
+    def get_projects(self, obj):
+        return Projects.objects.filter(owner=obj.owner.id)
+
     class Meta:
         model = Profile
         fields = [
