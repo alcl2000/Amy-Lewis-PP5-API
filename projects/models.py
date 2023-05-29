@@ -25,10 +25,9 @@ class Projects(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     # user edited fields
     title = models.CharField(max_length=50)
-    goals = ArrayField(
-        models.CharField(max_length=250, blank=True),
-        size=3
-    )
+    goal_1 = models.CharField(max_length=250, blank=True)
+    goal_2 = models.CharField(max_length=250, blank=True)
+    goal_3 = models.CharField(max_length=250, blank=True)
     deadline = models.DateTimeField(null=True)
     status = models.CharField(
         max_length=11,
