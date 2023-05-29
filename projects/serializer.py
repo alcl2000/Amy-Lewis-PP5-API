@@ -7,12 +7,16 @@ class ProjectSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     owner_id = serializers.ReadOnlyField(source=owner.id)
     tasks = serializers.ReadOnlyField()
-    # members = ProfileSerializer(many=True)
+    members = ProfileSerializer(many=True)
     is_member = serializers.SerializerMethodField()
 
     def get_owner_id(self, obj):
         request = self.context['request']
         return request.user == obj.owner 
+    
+    def get_is_member(self, obj):
+        request = self.context['request']
+        return request.user in obj.members
     
     class Meta:
         model = Projects
