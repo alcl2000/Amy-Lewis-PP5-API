@@ -22,11 +22,10 @@ class ProfileList(generics.ListAPIView):
         filters.OrderingFilter,
         DjangoFilterBackend,
     ]
-    # filterset_fields = [
-    #     'owner__projects__members__profile',
-    #     'projects',
-    #     'tasks'
-    # ]
+    filterset_fields = [
+        'owner__projects__owner',
+        'owner__tasks__user',
+    ]
 
 
 class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
