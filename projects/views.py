@@ -11,7 +11,8 @@ class ProjectList(generics.ListCreateAPIView):
     serializer_class = ProjectSerializer
     filter_backends = [
         DjangoFilterBackend,
-        filters.SearchFilter
+        filters.SearchFilter,
+        filters.OrderingFilter
     ]
     filterset_fields = [
         'owner'
