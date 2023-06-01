@@ -27,6 +27,26 @@ class TaskListViewTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
 
-# class TaskDetailViewTest(APITestCase):
+class TaskDetailViewTest(APITestCase):
 
+    def setUp(self):
+        adam = User.objects.create_user(username='adam', password='123')
+        brian = User.objects.create_user(username='brian', password='123')
+        project_1 = Projects.objects.create(id=1,
+                                            title='project_1',
+                                            owner=adam)
+        Tasks.objects.create(project=project_1,
+                             title='a title',
+                             id=1,
+                             owner=adam,
+                             important=True)
+        Tasks.objects.create(project=project_1,
+                             id=2,
+                             title='another title',
+                             owner=brian,
+                             important=True)
+        
+    def test_can_retrieve_task_with_valid_id(self):
+        response = self.client.get('/tasks/1')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
