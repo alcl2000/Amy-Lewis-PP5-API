@@ -21,4 +21,12 @@ class TaskListViewTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         count = Tasks.objects.count()
         self.assertEqual(count, 1)
+    
+    def test_non_logged_in_user_cant_create_posts(self):
+        response = self.client.post('/tasks/', {'title': 'a title'}, project=1)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+
+# class TaskDetailViewTest(APITestCase):
+
 
