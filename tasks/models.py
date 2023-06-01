@@ -14,10 +14,10 @@ class Tasks(models.Model):
         ('in_progress', 'In Progress'), 
         ('complete', 'Complete')
     ]
-    user = models.ForeignKey(User, 
-                             on_delete=models.SET(set_no_owner), 
-                             blank=True,
-                             )
+    owner = models.ForeignKey(User, 
+                              on_delete=models.SET(set_no_owner), 
+                              blank=True,
+                              )
     title = models.CharField(max_length=250)
     project = models.ForeignKey(Projects, 
                                 on_delete=models.CASCADE,
