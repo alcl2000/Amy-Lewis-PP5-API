@@ -54,18 +54,17 @@ class TaskDetailViewTest(APITestCase):
         response = self.client.get('/tasks/3')
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
     
-    # def test_user_can_update_own_tasks(self):
-    #     self.client.login(username='adam', password='123')
-    #     response = self.client.put('/tasks/1', title='a new title')
-    #     print(response.status_code)
-    #     task = Tasks.objects.filter(pk=1).first()
-    #     self.assertEqual(task.title, 'a new title')
-    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
+    def test_user_can_update_own_tasks(self):
+        self.client.login(username='adam', password='123')
+        response = self.client.put('/tasks/1', {'title': 'a new title'})
+        print(response.status_code)
+        task = Tasks.objects.filter(pk=1).first()
+        self.assertEqual(task.title, 'a new title')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_user_cant_update_others_tasks(self):
         self.client.login(username='adam', password='123')
-        response = self.client.put('/tasks/2', title='a new title')
-        print(response.status_code)
+        response = self.client.put('/tasks/2', {'title': 'a new title'})
         task = Tasks.objects.filter(pk=1).first()
         self.assertEqual(task.title, 'a title')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
