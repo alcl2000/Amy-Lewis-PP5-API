@@ -28,12 +28,19 @@ class ProjectDetailViewTest(APITestCase):
     def setUp(self):
         adam = User.objects.create_user(username='adam', password='123')
         brian = User.objects.create_user(username='brian', password='123')
-        project_1 = Projects.objects.create(title='a title', owner='adam')
+        project_1 = Projects.objects.create(title='a title', owner=adam)
 
-        def test_can_retrieve_project_with_valid_id(self):
-            response = self.client.get('/projects/1/')
-            self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
-        def test_cant_retrieve_project_with_invalid_id(self):
-            response = self.client.get('/projects/2/')
-            self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+    def test_can_retrieve_project_with_valid_id(self):
+        response = self.client.get('/projects/1/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+    
+    def test_cant_retrieve_project_with_invalid_id(self):
+        response = self.client.get('/projects/2/')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+    
+    def test_user_can_update_own_projects(self):
+        self.client.login(username='adam', password='123')
+        response = self.client.put('projects/1/', {'a new title'})
+        project = Projects.objects.filter(pk=1).first()
+        self.assertEqual(project.title, 'a new title')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
