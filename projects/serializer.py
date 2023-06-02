@@ -13,7 +13,11 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     def get_owner_id(self, obj):
         request = self.context['request']
-        return request.user == obj.owner 
+        return request.user == obj.owner
+    
+    def get_is_owner(self, obj):
+        request = self.context['request']
+        return request.user == obj.owner
     
     def get_is_member(self, obj):
         request = self.context['request']
