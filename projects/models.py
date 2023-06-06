@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
+from profiles.models import Profile
 
 
 class Projects(models.Model):
@@ -25,6 +26,7 @@ class Projects(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     # user edited fields
     title = models.CharField(max_length=50)
+    members = models.ManyToManyField(Profile)
     goal_1 = models.CharField(max_length=250, blank=True)
     goal_2 = models.CharField(max_length=250, blank=True)
     goal_3 = models.CharField(max_length=250, blank=True)
