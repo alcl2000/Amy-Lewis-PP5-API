@@ -7,7 +7,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 
 class ProjectList(generics.ListCreateAPIView):
-    queryset = Projects.objects.order_by('created_on')
+    queryset = Projects.objects.all().order_by('created_on')
     serializer_class = ProjectSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [
