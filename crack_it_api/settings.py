@@ -36,7 +36,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu98.gitpod.io']
+ALLOWED_HOSTS = ['8000-alcl2000-amylewispp5api-31ntatozqya.ws-eu98.gitpod.io']
 
 
 # Application definition
@@ -120,7 +120,6 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
-    print('connected')
 
 
 # Password validation
