@@ -11,3 +11,8 @@ class ProfileListViewTest(APITestCase):
     def test_can_retrieve_profiles_list(self):
         response = self.client.get('/profiles/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_profile_created_automatically_with_user(self):
+        self.client.get('/profiles/')
+        count = Profile.objects.count()
+        self.assertEqual(count, 1)
