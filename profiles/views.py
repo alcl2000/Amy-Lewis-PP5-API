@@ -24,7 +24,7 @@ class ProfileList(generics.ListAPIView):
     ]
     filterset_fields = [
         'owner__projects__owner',
-        'owner__tasks__user',
+        'owner__tasks',
     ]
 
 
