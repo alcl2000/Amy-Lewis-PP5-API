@@ -37,4 +37,11 @@ class ProfileDetailView(APITestCase):
         profile = Profile.objects.filter(pk=1).first()
         self.assertEqual(profile.bio, 'hello')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+    
+    def test_user_cant_edit_others_profiles(self):
+        self.client.login(username='adam', password='123')
+        response = self.client.put('/profiles/2/', {'bio': 'hello'})
+        profile = Profile.objects.filter(pk=2).first()
+        self.assertEqual(profile.bio, '')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
