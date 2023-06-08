@@ -62,7 +62,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['8000-alcl2000-amylewispp5api-31ntatozqya.ws-eu98.gitpod.io']
+ALLOWED_HOSTS = ['8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu99.gitpod.io', 'crack-it-api.herokuapp.com/']
 
 
 # Application definition
