@@ -22,7 +22,6 @@ class Tasks(models.Model):
     project = models.ForeignKey(Projects, 
                                 on_delete=models.CASCADE,
                                 related_name='tasks',
-                                blank=True,
                                 null=True
                                 )
     important = models.BooleanField()
