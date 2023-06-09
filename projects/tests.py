@@ -40,7 +40,8 @@ class ProjectDetailViewTest(APITestCase):
     
     def test_user_can_update_own_projects(self):
         self.client.login(username='adam', password='123')
-        response = self.client.put('projects/1/', {'title': 'a new title'})
+        response = self.client.put('/projects/1/', {'title': 'a new title'})
+        print(response.status_code)
         project = Projects.objects.filter(pk=1).first()
         self.assertEqual(project.title, 'a new title')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
