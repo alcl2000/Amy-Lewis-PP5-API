@@ -3,6 +3,7 @@ from projects.models import Projects
 from profiles.serializer import ProfileSerializer
 from profiles.models import Profile
 from tasks.models import Tasks
+from tasks.serializer import TaskSerializer
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -10,13 +11,9 @@ class ProjectSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     # owner_id = serializers.ReadOnlyField(source='owner.id')
     owner_id = serializers.SerializerMethodField()
-    tasks = serializers.SerializerMethodField()
+    tasks = TaskSerializer(read_only=False, many=True, required=False)
     members = ProfileSerializer(read_only=False, many=True, required=False)
     is_member = serializers.SerializerMethodField()
-
-    def get_tasks(self, obj):
-        tasks = Tasks.objects.filter(project=obj.id)
-        return tasks
 
     def get_owner_id(self, obj):
         request = self.context['request']
