@@ -6,11 +6,12 @@ from tasks.models import Tasks
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+    owner_name = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
-    owner_id = serializers.ReadOnlyField(source='owner.id')
+    # owner_id = serializers.ReadOnlyField(source='owner.id')
+    owner_id = serializers.SerializerMethodField()
     tasks = serializers.SerializerMethodField()
-    members = ProfileSerializer(read_only=False, many=True)
+    members = ProfileSerializer(read_only=False, many=True, required=False)
     is_member = serializers.SerializerMethodField()
 
     def get_tasks(self, obj):
@@ -19,11 +20,11 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     def get_owner_id(self, obj):
         request = self.context['request']
-        return request.user == obj.owner
+        return request.user == obj.owner_id
     
     def get_is_owner(self, obj):
         request = self.context['request']
-        return request.user == obj.owner_id
+        return request.user == obj.owner
     
     def get_is_member(self, obj):
         request = self.context['request']
@@ -36,7 +37,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Projects
         fields = [
-            'id', 'owner', 'owner_id', 'is_owner', 'title', 'goal_1', 'goal_2',
-            'goal_3', 'deadline', 'created_on', 'color', 'tasks', 'members',
-            'is_member'
+            'id', 'owner_name', 'owner_id', 'is_owner', 'title', 'goal_1',
+            'goal_2', 'goal_3', 'deadline', 'created_on', 'color', 'tasks',
+            'members', 'is_member'
             ]
