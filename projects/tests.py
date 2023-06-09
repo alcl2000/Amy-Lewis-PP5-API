@@ -41,7 +41,13 @@ class ProjectDetailViewTest(APITestCase):
     def test_user_can_update_own_projects(self):
         self.client.login(username='adam', password='123')
         response = self.client.put('/projects/1/', {'title': 'a new title'})
-        print(response.status_code)
         project = Projects.objects.filter(pk=1).first()
         self.assertEqual(project.title, 'a new title')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+    
+    def test_user_cant_update_others_projects(self):
+        self.client.login(username='brian', password='123')
+        response = self.client.put('/projects/1/', {'title': 'a new title'})
+        project = Projects.objects.filter(pk=1).first()
+        self.assertEqual(project.title, 'a title')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
