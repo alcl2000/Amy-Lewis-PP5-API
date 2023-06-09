@@ -23,6 +23,9 @@ class ProjectList(generics.ListCreateAPIView):
         'owner'   
     ]
 
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
 
 class ProjectDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProjectSerializer
