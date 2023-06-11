@@ -18,11 +18,11 @@ class ProjectSerializer(serializers.ModelSerializer):
     def get_owner_id(self, obj):
         request = self.context['request']
         return request.user == obj.owner_id
-    
+
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
-    
+
     def get_is_member(self, obj):
         request = self.context['request']
         if request.user.is_authenticated:
@@ -30,7 +30,7 @@ class ProjectSerializer(serializers.ModelSerializer):
                                             owner=request.user.id)
             return True
         return False
-    
+
     class Meta:
         model = Projects
         fields = [
