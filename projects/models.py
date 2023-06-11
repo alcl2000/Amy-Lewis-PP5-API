@@ -40,10 +40,10 @@ class Projects(models.Model):
             max_length=6,
             default='red',
             choices=project_color_choices
-                            )    
-    
+                            )
+
     class Meta:
         ordering = ['-created_on']
-    
+
     def string(self):
         return f'${self.id}. ${self.title}'
