@@ -2,12 +2,13 @@ asgiref==3.6.0
 cloudinary==1.33.0
 coverage==7.2.7
 dj-database-url==2.0.0
-dj-rest-auth==4.0.1
+dj-rest-auth==2.1.9
 dj3-cloudinary-storage==0.0.6
 Django==3.2.19
 django-allauth==0.54.0
 django-cors-headers==4.0.0
 django-filter==23.2
+django-rest-authtoken==2.1.4
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
 gunicorn==20.1.0
