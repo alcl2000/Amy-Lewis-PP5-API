@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 # Create your models here.
 
@@ -11,14 +11,14 @@ class Profile(models.Model):
     bio = models.TextField(blank=True)
     profile_pic = models.ImageField(
         upload_to='images/', default='../default-pic_ls0v0g.png'
-    ) 
+    )
 
     class Meta:
         ordering = ['-created_on']
-    
+
     def __str__(self):
         return f"${self.name}'s profile"
-    
+
 
 def create_profile(sender, instance, created, **kwargs):
     if created:

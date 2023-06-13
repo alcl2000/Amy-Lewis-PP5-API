@@ -20,7 +20,7 @@ class ProjectList(generics.ListCreateAPIView):
     ]
     search_fields = [
         'title',
-        'owner'   
+        'owner'
     ]
 
     def perform_create(self, serializer):

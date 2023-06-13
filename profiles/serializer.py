@@ -12,7 +12,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         if value.size > 2 * 1024 * 1024:
             raise serializers.ValidationError(
                 'Profile picture size larger than 2mb')
-    
+
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
