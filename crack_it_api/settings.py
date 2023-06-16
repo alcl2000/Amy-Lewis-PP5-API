@@ -64,8 +64,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = ['8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu99.gitpod.io',
-                 'crack-it-api.herokuapp.com']
+                 'crack-it-api.herokuapp.com', '8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu100.gitpod.io']
 
+CSRF_TRUSTED_ORIGINS = ['https://8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu100.gitpod.io',
+                        'https://crack-it-api.herokuapp.com']
 
 # Application definition
 
@@ -106,11 +108,12 @@ MIDDLEWARE = [
 
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
-    ]
-else:
+         os.environ.get('CLIENT_ORIGIN')
+     ]
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    extracted_url = re.match(r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
     CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https://.*\.gitpod\.io$",
+        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
     ]
 
 CORS_ALLOW_CREDENTIALS = True
