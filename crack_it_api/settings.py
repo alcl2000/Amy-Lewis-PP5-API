@@ -66,7 +66,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', os.environ.get('ALLOWED_HOST'),
-                 '8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu100.gitpod.io']
+                 '8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu100.gitpod.io', ]
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu100.gitpod.io',
                         'https://crack-it-api.herokuapp.com']
