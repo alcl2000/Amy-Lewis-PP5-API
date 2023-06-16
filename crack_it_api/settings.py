@@ -63,7 +63,7 @@ SITE_ID = 1
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', os.environ.get('ALLOWED_HOST'),
                  '8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu100.gitpod.io']
