@@ -14,7 +14,8 @@ from pathlib import Path
 import os
 import dj_database_url
 import re
-if os.path.isfile('env.py'):
+
+if os.path.exists('env.py'):
     import env
 
 CLOUDINARY_STORAGE = {
@@ -64,8 +65,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu99.gitpod.io',
-                 'crack-it-api.herokuapp.com', '8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu100.gitpod.io']
+ALLOWED_HOSTS = ['localhost', os.environ.get('ALLOWED_HOST'), 
+                 '8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu100.gitpod.io',
+                 'https://crack-it-api.herokuapp.com']
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu100.gitpod.io',
                         'https://crack-it-api.herokuapp.com']
