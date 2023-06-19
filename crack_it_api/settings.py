@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-if os.path.isfile('env.py'):
+import re
+
+if os.path.exists('env.py'):
     import env
 
 CLOUDINARY_STORAGE = {
@@ -61,11 +63,13 @@ SITE_ID = 1
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEV' in os.environ
+DEBUG = False
 
-ALLOWED_HOSTS = ['8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu99.gitpod.io',
-                 'crack-it-api.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', os.environ.get('ALLOWED_HOST'),
+                 '8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu100.gitpod.io', ]
 
+CSRF_TRUSTED_ORIGINS = ['https://8000-alcl2000-amylewispp5api-cr89kolq3l3.ws-eu100.gitpod.io',
+                        'https://crack-it-api.herokuapp.com']
 
 # Application definition
 
@@ -106,11 +110,12 @@ MIDDLEWARE = [
 
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
-    ]
-else:
+         os.environ.get('CLIENT_ORIGIN')
+     ]
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    extracted_url = re.match(r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
     CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https://.*\.gitpod\.io$",
+        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
     ]
 
 CORS_ALLOW_CREDENTIALS = True
