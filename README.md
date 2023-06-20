@@ -120,9 +120,172 @@ Project
   </tr>
 </table>
 
+## User story testing - Back end
 
 
-## Backend - automated testing:
+<table>
+  <tr>
+   <td>User story
+   </td>
+   <td>Acceptance criteria
+   </td>
+   <td>Mapping API feature
+   </td>
+   <td>Pass/Fail
+   </td>
+  </tr>
+  <tr>
+   <td>As a user I want to be able to organise similar tasks into projects as a way of breaking up jobs into smaller tasks
+   </td>
+   <td>
+<ul>
+
+<li>Users are able to create tasks 
+
+<li>Project ID, Assigned Users and importance state are able to be able to set independently of each other
+</li>
+</ul>
+   </td>
+   <td>Create Projects
+<p>
+Create Tasks
+   </td>
+   <td>Pass
+   </td>
+  </tr>
+  <tr>
+   <td>As a user I want to set deadlines for Tasks and Projects so that I can enhance organisation and to encourage users to work more efficiently
+   </td>
+   <td>
+<ul>
+
+<li>Deadlines can easily be set for tasks and projects
+
+<li>Deadlines can be extended for tasks
+
+<li>Deadlines for projects can be extended
+
+<li>Deadlines for tasks cannot be longer than the deadline for the project as a whole
+</li>
+</ul>
+   </td>
+   <td>Create Projects
+<p>
+Create Tasks
+   </td>
+   <td>Pass
+   </td>
+  </tr>
+  <tr>
+   <td>As a user I want to be able to set tasks as important in order to better allocate resources when working on a project
+   </td>
+   <td>
+<ul>
+
+<li>Users should be able to set tasks as important
+
+<li>When looking at tasks on the homepage or in the project detail page, users should be able to sort by the most important tasks
+
+<li>Users should be able to set tasks as important at any time and reverse it as well
+</li>
+</ul>
+   </td>
+   <td>Create Tasks
+   </td>
+   <td>Pass
+   </td>
+  </tr>
+  <tr>
+   <td>As a user I want to be able to set tasks as not started/in progress/complete so that I can see clear progress towards my goals and the project as a whole
+   </td>
+   <td>
+<ul>
+
+<li>Tasks should automatically be set to not started when created
+
+<li>When a user interacts with it, they can change the state of the task to in progress
+
+<li>When a task is completed, it displays as crossed out
+
+<li>Tasks can be reopened if needed
+</li>
+</ul>
+   </td>
+   <td>Create Tasks
+<p>
+Edit Tasks
+   </td>
+   <td>Pass
+   </td>
+  </tr>
+  <tr>
+   <td>As a user I want to be able to set specific, targeted goals for a project so that users can see the goals for the project and what they are working towards
+   </td>
+   <td>
+<ul>
+
+<li>Users can set up to three goals for a project, to work as a description
+
+<li>Users may edit the goals at any point
+
+<li>The goals are displayed clearly on the project's homepage
+</li>
+</ul>
+   </td>
+   <td>Create Projects
+<p>
+Edit Projects
+   </td>
+   <td>Pass
+   </td>
+  </tr>
+  <tr>
+   <td>As a user I would like to be able to create a profile to share my work with other users and to ensure that I'm allowing access to the right people
+   </td>
+   <td>
+<ul>
+
+<li>Users can create a profile, with a profile picture and bio
+
+<li>Users can edit that profile when desired
+
+<li>A user's profile displays which projects they are involved in
+</li>
+</ul>
+   </td>
+   <td>Create Profile (automatic)
+<p>
+Dj-rest-auth - create User
+   </td>
+   <td>Pass
+   </td>
+  </tr>
+  <tr>
+   <td>As a user I want to add my friends and teammates to our projects so that we can work collaboratively and assign each other tasks
+   </td>
+   <td>
+<ul>
+
+<li>Users can add their collaborators to projects, who can then interact with the projects
+
+<li>They can also remove Users, if they wish
+</li>
+</ul>
+   </td>
+   <td>Dj-rest-auth - create User
+<p>
+Edit Projects
+<p>
+Edit Tasks
+   </td>
+   <td>Pass
+   </td>
+  </tr>
+</table>
+
+
+
+## Automated testing:
 
 The automated tests for this project were written using pytest and the Django rest API’s custom ‘API test case’ the following tests were written and the app has 94% coverage according to htmlcov.
 
