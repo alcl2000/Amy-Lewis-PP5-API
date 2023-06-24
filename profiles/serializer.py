@@ -6,7 +6,6 @@ from projects.models import Projects
 class ProfileSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
-    projects = serializers.SerializerMethodField()
 
     def validate_image(self, value):
         if value.size > 2 * 1024 * 1024:
@@ -17,12 +16,9 @@ class ProfileSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.owner
 
-    def get_projects(self, obj):
-        return Projects.objects.filter(owner=obj.owner.id)
-
     class Meta:
         model = Profile
         fields = [
             'id', 'owner', 'is_owner', 'created_on', 'name', 'bio',
-            'profile_pic', 'projects'
+            'profile_pic'
         ]
