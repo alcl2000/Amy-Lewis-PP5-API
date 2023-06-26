@@ -315,6 +315,22 @@ The automated tests for this project were written using pytest and the Django re
     * User can edit own profile
     * User can't edit others profiles
 
+## Errors:
+
+
+
+* Error: 'Operation error' no such table as 'project_project' 
+    * This error occurred when trying to perform queries, tests and run the server 
+    * This error occurred as a result of having stuck/corrupted database migrations in the migrations folder. The error was easily resolved by deleting previous migrations and then re-migrating the project
+* Error: 'django.db.utils.OperationalError: near "[3]": syntax error'
+    * Error occurred during development - the format of a projects ‘goals’ field was changed to one which was dependant on a PostgreSQL field, which would interfere with the local databases
+    * The format of this field was returned to the way it was before, so that the database format could be used in both the test and production databases
+* Error: Heroku web app crash code h:10
+    * This error occurred during deployment to Heroku, displaying the h:10 error code with the reference “DRF_API module not found”
+    * This error occurred due to an improper configuration of the Procfile from a previous project
+    * Resolved by editing the Procfile and re-deploying
+    * ![a screenshot showing the diffing and fix of the Procfile]('./assets/procfile_error_fix.png')
+
 ## Deployment Steps:
 
 
