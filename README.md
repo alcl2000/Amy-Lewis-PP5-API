@@ -283,6 +283,17 @@ Edit Tasks
   </tr>
 </table>
 
+## Validation 
+
+- The code has been validated using the auto pep8 validator within my IDE, and Code Insitute's own code validator 
+- All custom models and custom python files pass validation 
+- The Task app
+    - ![]('../../assets/task-model-code-validation.jpg')
+- The Project app
+    - ![]('../../assets/project-model-code-validation.jpg)
+- The Profiles app
+    - ![]('../../assets/profiles-model-code-validation.jpg)
+
 
 
 ## Automated testing:
