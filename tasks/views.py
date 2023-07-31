@@ -33,4 +33,4 @@ class TaskList(generics.ListCreateAPIView):
 class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TaskSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Tasks.objects.all().order_by('-created_on')
+    queryset = Tasks.objects.order_by('-created_on')
