@@ -16,9 +16,7 @@ class ProjectList(generics.ListCreateAPIView):
         filters.OrderingFilter
     ]
     filterset_fields = [
-        'owner_name',
-        'owner_id',
-        'is_owner',
+        'owner__user__projects'
     ]
     search_fields = [
         'title',
