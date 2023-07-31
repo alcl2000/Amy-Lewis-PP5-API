@@ -9,15 +9,10 @@ from tasks.serializer import TaskSerializer
 class ProjectSerializer(serializers.ModelSerializer):
     owner_name = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
-    # owner_id = serializers.ReadOnlyField(source='owner.id')
-    owner_id = serializers.SerializerMethodField()
+    owner_id = serializers.ReadOnlyField(source='owner.id')
     tasks = TaskSerializer(read_only=False, many=True, required=False)
     members = ProfileSerializer(read_only=False, many=True, required=False)
     is_member = serializers.SerializerMethodField()
-
-    def get_owner_id(self, obj):
-        request = self.context['request']
-        return request.user == obj.owner_id
 
     def get_is_owner(self, obj):
         request = self.context['request']
