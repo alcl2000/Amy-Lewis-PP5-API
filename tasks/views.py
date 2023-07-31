@@ -10,7 +10,7 @@ from crack_it_api.permissions import IsOwnerOrReadOnly
 class TaskList(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Tasks.objects.order_by('-created_on')
+    queryset = Tasks.objects.all().order_by('-created_on')
     filterset_backends = [
         DjangoFilterBackend,
         filters.OrderingFilter,
@@ -33,4 +33,4 @@ class TaskList(generics.ListCreateAPIView):
 class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TaskSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Tasks.objects.order_by('-created_on')
+    queryset = Tasks.objects.all().order_by('-created_on')
