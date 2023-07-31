@@ -16,7 +16,7 @@ class ProjectList(generics.ListCreateAPIView):
         filters.OrderingFilter
     ]
     filterset_fields = [
-        'owner'
+        'owner__projects'
     ]
     search_fields = [
         'title',
@@ -30,4 +30,4 @@ class ProjectList(generics.ListCreateAPIView):
 class ProjectDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProjectSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Projects.objects.all().order_by('created_on')
+    queryset = Projects.objects.order_by('created_on')
