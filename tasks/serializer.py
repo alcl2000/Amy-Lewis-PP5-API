@@ -3,7 +3,8 @@ from rest_framework import serializers
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+    owner_name = serializers.ReadOnlyField(source='owner.username')
+    owner_id = serializers.ReadOnlyField(source='owner.id')
     is_owner = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
@@ -13,6 +14,6 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tasks
         fields = [
-            'id', 'owner', 'is_owner', 'title', 'progress',
+            'id', 'owner_name', 'owner_id', 'is_owner', 'title', 'progress',
             'due_date', 'created_on', 'important', 'project'
         ]
