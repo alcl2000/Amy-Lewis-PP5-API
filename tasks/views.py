@@ -11,7 +11,7 @@ class TaskList(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Tasks.objects.all().order_by('-created_on')
-    filterset_backends = [
+    filter_backends = [
         DjangoFilterBackend,
         filters.OrderingFilter,
         filters.SearchFilter
