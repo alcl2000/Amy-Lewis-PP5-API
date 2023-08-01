@@ -18,6 +18,7 @@ class ProjectList(generics.ListCreateAPIView):
     filterset_fields = [
         'owner',
         'owner__projects',
+        'status'
     ]
     search_fields = [
         'title',

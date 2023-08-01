@@ -31,5 +31,5 @@ class ProjectSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner_name', 'owner_id', 'is_owner', 'title', 'goal_1',
             'goal_2', 'goal_3', 'deadline', 'created_on', 'color', 'tasks',
-            'members', 'is_member'
+            'members', 'is_member', 'status'
             ]
