@@ -18,7 +18,7 @@ class TaskList(generics.ListCreateAPIView):
     ]
     filterset_fields = [
         'owner',
-        'owner__tasks'
+        'owner__tasks',
         'important',
         'project'
     ]
