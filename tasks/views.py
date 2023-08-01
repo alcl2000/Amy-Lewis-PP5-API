@@ -20,7 +20,8 @@ class TaskList(generics.ListCreateAPIView):
         'owner',
         'owner__tasks',
         'important',
-        'project'
+        'project',
+        'progress'
     ]
     search_fields = [
         'title',
